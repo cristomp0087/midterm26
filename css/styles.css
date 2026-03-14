@@ -101,6 +101,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 15rem;
 }
 
 header a {
@@ -133,11 +134,20 @@ nav a {
     background-position: center;
     min-height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
-    padding: 4rem 1rem;
     color: var(--color-white);
+    padding: 3rem 2rem;
+
+}
+
+
+/* the text content should be constrained */
+.hero-content {
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto; /* centers the block itself within the hero */
 }
 
 .hero h1 {
