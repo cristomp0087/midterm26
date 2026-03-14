@@ -1,0 +1,468 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain) */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* ---- My styles start here ---- */
+
+
+/* importing two fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Lato:wght@400;700;900&display=swap');
+
+
+/* Setting up the colors and fonts as variables so I only have to change them in one place */
+:root {
+    --color-bg: #f3f0e9;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gold: #d69e3d;
+    --color-gold-dark: #966f2c;
+    --font-heading: 'Lato', sans-serif;
+    --font-body: 'Karla', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+}
+
+/* All headings use Lato */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 900;
+}
+
+/* Mobile type scale */
+h1 { font-size: 2.027rem; }
+h2 { font-size: 1.802rem; }
+h3 { font-size: 1.424rem; }
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* --- HEADER --- */
+
+header {
+    background-color: var(--color-black);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-family: var(--font-heading);
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* --- HERO ---
+   The hero background is set here in CSS instead of using an img tag in HTML
+   because it's purely decorative/.
+   Using background-image in CSS makes it easier to add the dark overlay on top
+   and position the text over it */
+
+.hero {
+    background-image: url('../images/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    padding: 4rem 1rem;
+    color: var(--color-white);
+}
+
+.hero h1 {
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    margin-bottom: 1.5rem;
+}
+
+
+/* --- BUTTONS ---
+   Karla font for buttons as the assignment ask .
+   I add transitions so the hover feels smooth */
+
+.btn {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    display: inline-block;
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+
+.btn:active {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-black);
+}
+
+.btn-dark {
+    border-color: var(--color-black);
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.btn-dark:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-black);
+}
+
+.btn-dark:active {
+    background-color: var(--color-gold-dark);
+    border-color: var(--color-gold-dark);
+}
+
+
+/* --- INTRO / GALLERY --- */
+
+.intro {
+    padding: 3rem 1rem;
+}
+
+.intro h2 {
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+/* On mobile the gallery is just stacked images */
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/* --- FEATURES / WHY VISIT US --- */
+
+.features {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.features h2 {
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+/* On mobile the feature cards stack vertically */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.feature-card img {
+    width: 80px;
+    margin: 0 auto 1rem;
+}
+
+.feature-card h3 {
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+
+/* --- CTA SPLIT SECTION ---
+   Same reason as the hero: these two panels use photos as backgrounds
+   because there's text on top of them*/
+
+.cta-menu {
+    background-image: url('../images/coffee-shop.jpeg');
+    background-size: cover;
+    background-position: left center;
+    background-color: rgba(0, 0, 0, 0.55);
+    background-blend-mode: multiply;
+    padding: 3rem 1.5rem;
+    color: var(--color-white);
+}
+
+.cta-locations {
+    background-image: url('../images/coffee-shop.jpeg');
+    background-size: cover;
+    background-position: right center;
+    background-color: rgba(0, 0, 0, 0.55);
+    background-blend-mode: multiply;
+    padding: 3rem 1.5rem;
+    color: var(--color-white);
+}
+
+.cta-menu h2,
+.cta-locations h2 {
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+
+/* --- STORY SECTION --- */
+
+.story {
+    padding: 3rem 1rem;
+}
+
+.story img {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.story h2 {
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.story p {
+    margin-bottom: 1rem;
+}
+
+
+/* --- TESTIMONIALS --- */
+
+.testimonials {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 3rem 1rem;
+}
+
+.testimonials h2 {
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+/* On mobile testimonials stack vertically */
+.testimonials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.testimonial-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+
+/* --- FOOTER --- */
+
+footer {
+    background-color: var(--color-black);
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+}
+
+
+/* =====================
+   TABLET — 768px and up
+   ===================== */
+
+@media (min-width: 768px) {
+
+    h1 { font-size: 2.986rem; }
+    h2 { font-size: 2.488rem; }
+    h3 { font-size: 1.728rem; }
+
+    /* Gallery becomes a grid: large image on the left spanning 2 rows,
+       4 smaller images filling the right side */
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto auto;
+    }
+
+    .gallery-item-large {
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+    }
+
+    .gallery-item-large img {
+        height: 100%;
+        min-height: 350px;
+    }
+
+    /* Feature cards go side by side on tablet */
+    .features-list {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .feature-card {
+        max-width: 280px;
+    }
+
+    /* CTA panels go side by side */
+    .cta-split {
+        display: flex;
+    }
+
+    .cta-menu,
+    .cta-locations {
+        flex: 1;
+    }
+
+    /* Story image and text go side by side */
+    .story-inner {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .story img {
+        flex: 0 0 45%;
+        margin-bottom: 0;
+    }
+
+    /* Testimonials go in a row on tablet */
+    .testimonials-list {
+        flex-direction: row;
+    }
+
+    .testimonial-card {
+        flex: 1;
+    }
+}
+
+
+/* ========================
+   DESKTOP — 1100px and up
+   ======================== */
+
+@media (min-width: 1100px) {
+
+    h1 { font-size: 3.815rem; }
+    h2 { font-size: 3.052rem; }
+    h3 { font-size: 1.953rem; }
+
+    .intro,
+    .features,
+    .story {
+        padding: 5rem 1rem;
+    }
+
+    .testimonials {
+        padding: 5rem 1rem;
+    }
+
+    .gallery img {
+        height: 220px;
+    }
+
+    .gallery-item-large img {
+        min-height: 440px;
+    }
+
+    .cta-menu,
+    .cta-locations {
+        padding: 5rem 3rem;
+    }
+
+    .story-inner {
+        gap: 4rem;
+    }
+
+    .testimonial-card img {
+        height: 340px;
+    }
+}
