@@ -79,7 +79,7 @@ body {
 /* All headings use Lato */
 h1, h2, h3 {
     font-family: var(--font-heading);
-    font-weight: 900;
+    font-weight: 700;
 }
 
 /* Mobile type scale */
@@ -108,6 +108,10 @@ header a {
     color: var(--color-white);
     text-decoration: none;
     font-family: var(--font-heading);
+}
+
+header img {
+    width: 160px;
 }
 
 nav ul {
@@ -211,10 +215,17 @@ nav a {
 /* --- INTRO / GALLERY --- */
 
 .intro {
-    padding: 3rem 1rem;
+    padding: 3rem 0rem;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .intro h2 {
+    font-family: var(--font-heading);
     text-transform: uppercase;
     margin-bottom: 1.5rem;
 }
@@ -267,24 +278,35 @@ nav a {
    Same reason as the hero: these two panels use photos as backgrounds
    because there's text on top of them*/
 
-.cta-menu {
+.cta-split {
     background-image: url('../images/coffee-shop.jpeg');
     background-size: cover;
-    background-position: left center;
+    background-position: center;
     background-color: rgba(0, 0, 0, 0.55);
     background-blend-mode: multiply;
+    display: flex;
+}
+.cta-menu {
+  
+    
+    flex: 1;
+    text-align: center;
+    
     padding: 3rem 1.5rem;
     color: var(--color-white);
 }
 
 .cta-locations {
-    background-image: url('../images/coffee-shop.jpeg');
-    background-size: cover;
-    background-position: right center;
-    background-color: rgba(0, 0, 0, 0.55);
-    background-blend-mode: multiply;
+    
+     flex: 1;
+    text-align: center;
     padding: 3rem 1.5rem;
     color: var(--color-white);
+}
+
+.cta-menu,
+.cta-locations {
+    text-align: center;
 }
 
 .cta-menu h2,
@@ -294,12 +316,12 @@ nav a {
 }
 
 .section-label {
+    font-family: var(--font-body);
+    color: var(--color-gold);
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-gold);
-    display: block;
+    letter-spacing: 0.1em;
     margin-bottom: 0.5rem;
 }
 
@@ -307,21 +329,37 @@ nav a {
 /* --- STORY SECTION --- */
 
 .story {
-    padding: 3rem 1rem;
+    padding: 3rem 0rem;
+    flex-direction: column;
+    
+    
 }
 
 .story img {
     width: 100%;
-    margin-bottom: 1.5rem;
+    object-fit: cover;
+    max-height: 800px;
 }
 
 .story h2 {
+   font-family: var(--font-heading);
     text-transform: uppercase;
     margin-bottom: 1rem;
 }
 
 .story p {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+}
+
+/* on mobile, image stacks on top of text */
+.story-inner {
+     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.story-inner .btn {
+    align-self: flex-start;
 }
 
 
@@ -412,17 +450,38 @@ footer {
         flex: 1;
     }
 
-    /* Story image and text go side by side */
-    .story-inner {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-    }
+/* Story image and text go side by side on tablet */
+.story {
+    padding: 3rem 0;
+}
 
-    .story img {
-        flex: 0 0 45%;
-        margin-bottom: 0;
-    }
+.story .wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.story img {
+    flex: 0 0 45%;
+    max-width: 45%;
+    object-fit: cover;
+}
+
+.story-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.story h2 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+
+
 
     /* Testimonials go in a row on tablet */
     .testimonials-list {
@@ -469,7 +528,7 @@ footer {
     }
 
     .story-inner {
-        gap: 4rem;
+        gap: 0;
     }
 
     .testimonial-card img {
