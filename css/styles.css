@@ -99,9 +99,10 @@ header {
     background-color: var(--color-black);
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 1rem 15rem;
+    gap: 0.75rem;
+    text-align: center;
 }
 
 header a {
@@ -124,7 +125,6 @@ nav a {
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
-
 
 /* --- HERO ---
    The hero background is set here in CSS instead of using an img tag in HTML
@@ -231,17 +231,21 @@ nav a {
     margin-bottom: 1.5rem;
 }
 
-/* On mobile the gallery is just stacked images */
+/* On mobile the gallery is a 2-col grid:
+   large image spans full width on top, smaller ones fill 2 columns below */
 .gallery {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
-   
 }
 
-.gallery img {
+.gallery-item-large {
+    grid-column: 1 / -1;
+}
+
+.gallery-item-large img {
+    height: 250px;
     width: 100%;
-    height: 200px;
     object-fit: cover;
 }
 
@@ -286,7 +290,7 @@ nav a {
 
 /* --- CTA SPLIT SECTION ---
    Same reason as the hero: these two panels use photos as backgrounds
-   because there's text on top of them*/
+   because there's text on top of them */
 
 .cta-split {
     background-image: url('../images/coffee-shop.jpeg');
@@ -295,36 +299,23 @@ nav a {
     background-color: rgba(0, 0, 0, 0.55);
     background-blend-mode: multiply;
     display: flex;
-}
-.cta-menu {
-  
-    
-    flex: 1;
-    text-align: center;
-    
-    padding: 3rem 1.5rem;
-    color: var(--color-white);
-}
-
-.cta-locations {
-    
-     flex: 1;
-    text-align: center;
-    padding: 3rem 1.5rem;
-    color: var(--color-white);
+    flex-direction: column;
 }
 
 .cta-menu,
 .cta-locations {
+    flex: 1;
     text-align: center;
+    padding: 3rem 1.5rem;
+    color: var(--color-white);
 }
 
 .cta-menu h2,
 .cta-locations h2 {
     text-transform: uppercase;
     margin-bottom: 1.5rem;
-    max-width: 600px;        
-    margin-left: auto;      
+    max-width: 600px;
+    margin-left: auto;
     margin-right: auto;
 }
 
@@ -337,8 +328,6 @@ nav a {
     letter-spacing: 0.1em;
     margin-bottom: 0.5rem;
 }
-
-
 /* --- STORY SECTION --- */
 
 .story {
@@ -443,6 +432,26 @@ footer {
     font-size: 0.85rem;
 }
 
+/* =====================
+       ANIMATIONS
+   ===================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+
 
 /* =====================
    TABLET — 768px and up
@@ -453,6 +462,19 @@ footer {
     h1 { font-size: 2.986rem; }
     h2 { font-size: 2.488rem; }
     h3 { font-size: 1.728rem; }
+
+    /* Restore header to side-by-side layout on tablet */
+   header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 15rem;
+    text-align: left;
+}
+
+    /* Hero text goes back to centered on tablet */
+    .hero-content {
+        text-align: center;
+    }
 
     /* Gallery becomes a grid: large image on the left spanning 2 rows,
        4 smaller images filling the right side */
@@ -470,9 +492,11 @@ footer {
         height: 100%;
         min-height: 440px;
     }
-.gallery-item {
-    overflow: hidden;
-}
+
+    .gallery-item {
+        overflow: hidden;
+    }
+
     /* Feature cards go side by side on tablet */
     .features-list {
         flex-direction: row;
@@ -494,38 +518,39 @@ footer {
         flex: 1;
     }
 
-/* Story image and text go side by side on tablet */
-.story {
-    padding: 3rem 0;
+    .cta-split {
+    flex-direction: row;
 }
 
-.story .wrapper {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
+    /* Story image and text go side by side on tablet */
+    .story {
+        padding: 3rem 0;
+    }
 
-.story img {
-    flex: 0 0 45%;
-    max-width: 45%;
-    object-fit: cover;
-}
+    .story .wrapper {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
 
-.story-inner {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
+    .story img {
+        flex: 0 0 45%;
+        max-width: 45%;
+        object-fit: cover;
+    }
 
-.story h2 {
-    font-family: var(--font-heading);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-}
+    .story-inner {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
 
-
-
+    .story h2 {
+        font-family: var(--font-heading);
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
 
     /* Testimonials go in a row on tablet */
     .testimonials-list {
@@ -557,8 +582,6 @@ footer {
     .testimonials {
         padding: 5rem 1rem;
     }
-
-   
 
     .gallery-item-large img {
         min-height: 440px;
