@@ -150,6 +150,8 @@ nav a {
 /* the text content should be constrained */
 .hero-content {
     max-width: 800px;
+    /* I used max-width on some headings to control line breaks,
+     which isn't ideal but got the job done. */
     text-align: center;
     margin: 0 auto; /* centers the block itself within the hero */
 }
@@ -561,6 +563,9 @@ footer {
         flex: 1;
     }
 }
+
+/* I had difficult working mobile-first, base styles target mobile and media queries
+     build up from there for tablet and desktop. I think I managed to work through it. */
 
 
 /* ========================
